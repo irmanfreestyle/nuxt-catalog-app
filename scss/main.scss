@@ -1,0 +1,21 @@
+@import 'variables';
+
+// TEXT & BACKGROUND COLORS
+@each $name, $value in $colors {
+  .text-#{$name} { color: $value; }
+  .bg-#{$name} { background-color: $value; }
+}
+
+// DISPLAYS
+@each $value in $displays {
+  .d-#{$value} { display: $value; }
+}
+
+// FLEXBOX
+@each $value in $justify-contents {
+  .justify-content-#{$value} { justify-content: $value; }
+}
+
+@each $value in $align-items {
+  .align-items-#{$value} { align-items: $value; }
+}
