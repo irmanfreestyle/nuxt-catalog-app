@@ -1,12 +1,20 @@
 @import 'variables';
 
+body { margin: 0; }
+
+
+// TEXT ALIGN
+@each $align in $aligns {
+  .text-#{$align} { text-align: $align; }
+}
+
 // TEXT & BACKGROUND COLORS
 @each $name, $value in $colors {
   .text-#{$name} { color: $value; }
   .bg-#{$name} { background-color: $value; }
 }
 
-// DISPLAYS
+// DISPLAY
 @each $value in $displays {
   .d-#{$value} { display: $value; }
 }
@@ -18,4 +26,67 @@
 
 @each $value in $align-items {
   .align-items-#{$value} { align-items: $value; }
+}
+
+// SPACING
+@each $space in $spaces {
+  .m-#{$space} {
+    margin: #{calc($space/4)} rem;
+  }
+
+  .p-#{$space} {
+    padding: #{calc($space/4)} rem;
+  }
+
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{calc($space/4)} rem;
+    }
+
+    .p#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{calc($space/4)} rem;
+    }
+  }
+}
+
+// RESPONSIVE COLUMNS
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 576px) {
+  @each $col in $cols {
+    .col-xs-#{$col} {
+      flex: #{$col} 0 calc(100% / 12 * #{$col});
+      max-width: calc(100% / (1*12/$col));
+    }
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  @each $col in $cols {
+    .col-sm-#{$col} {
+      flex: #{$col} 0 calc(100% / 12 * #{$col});
+      max-width: calc(100% / (1*12/$col));
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  @each $col in $cols {
+    .col-md-#{$col} {
+      flex: #{$col} 0 calc(100% / 12 * #{$col});
+      max-width: calc(100% / (1*12/$col));
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  @each $col in $cols {
+    .col-lg-#{$col} {
+      flex: #{$col} 0 calc(100% / 12 * #{$col});
+      max-width: calc(100% / (1*12/$col));
+    }
+  }
 }
